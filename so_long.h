@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 17:38:54 by segan             #+#    #+#             */
-/*   Updated: 2022/11/18 19:05:22 by segan            ###   ########.fr       */
+/*   Created: 2022/11/18 17:43:59 by segan             #+#    #+#             */
+/*   Updated: 2022/11/18 20:50:18 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#ifndef SO_LONG_H
 
-int	main(void)
-{
-	void	*mlx;
-	void	*mlx_win;
+# define SO_LONG_H
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "test");
-	mlx_loop(mlx);
+void	check_map(void);
+char	*get_next_line(int fd);
+char	*get_map(void);
+void	free_arr(char *str);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *s2);
+void	validation_of_map(char *map);
+void	print_error(void);
 
-	//check_map();
-}
+#endif

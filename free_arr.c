@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_arr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 17:38:54 by segan             #+#    #+#             */
-/*   Updated: 2022/11/18 19:05:22 by segan            ###   ########.fr       */
+/*   Created: 2022/11/18 20:00:48 by segan             #+#    #+#             */
+/*   Updated: 2022/11/18 20:01:24 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include <stdlib.h>
 
-int	main(void)
+void	free_arr(char *str)
 {
-	void	*mlx;
-	void	*mlx_win;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "test");
-	mlx_loop(mlx);
-
-	//check_map();
+	free(str);
+	str = NULL;
 }

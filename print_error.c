@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 17:38:54 by segan             #+#    #+#             */
-/*   Updated: 2022/11/18 19:05:22 by segan            ###   ########.fr       */
+/*   Created: 2022/11/18 20:47:02 by segan             #+#    #+#             */
+/*   Updated: 2022/11/18 20:50:11 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include <unistd.h>
 
-int	main(void)
+void	print_error(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "test");
-	mlx_loop(mlx);
-
-	//check_map();
+	write(1, "Error\n", 6);
+	write(1, "invalid map\n", 12);
 }
