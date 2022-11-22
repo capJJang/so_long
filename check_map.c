@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:46:12 by segan             #+#    #+#             */
-/*   Updated: 2022/11/20 22:30:26 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/22 17:51:46 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@
 
 void	check_map(void)
 {
-	char	**map;
+	t_info	*info;
 
-	map = get_map();
-	validation_of_map_pce(map);
-	validation_of_map_shape(map);
+	info = (t_info *)malloc(sizeof(t_info));
+	if (!info)
+		exit(0);
+	info->map = get_map();
+	check_map_p(info);
+	check_map_c(info);
+	check_map_e(info);
+	validation_of_map_shape(info);
+	if (validation_of_map_path(info) == 0)
+		return (print_error());
 }
 
 char	**get_map(void)
@@ -43,62 +50,70 @@ char	**get_map(void)
 	return (ft_split(ret, '\n'));
 }
 
-void	validation_of_map_pce(char **map)
+void	check_map_p(t_info *info)
 {
-	size_t	i;
-	size_t	j;
-	int		p;
-	int		c;
-	int		e;
+	int	i;
+	int	j;
 
-	i = 0;
-	p = 0;
-	c = 0;
-	e = 0;
-	while (map[i])
+	i = -1;
+	info->p = 0;
+	while (info->map[++i])
 	{
-		j = 0;
-		while (map[i][j])
+		j = -1;
+		while (info->map[i][++j])
 		{
-			if (map[i][j] == 'P')
-				p++;
-			else if (map[i][j] == 'C')
-				c = 1;
-			else if (map[i][j] == 'E')
-				e++;
-			else
-				print_error();
-			j++;
+			if (info->map[i][j] == 'P')
+			{
+				info->p++;
+				info->j = j;
+				info->i = i;
+			}
 		}
-		i++;
 	}
-	if (!p || !c || !e)
-		print_error();
+	if (info->p != 1)
+		return (print_error());
 }
 
-void	validation_of_map_shape(char **map)
+void	check_map_c(t_info *info)
 {
-	size_t	row_check;
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (map[i])
+	i = -1;
+	info->c = 0;
+	while (info->map[++i])
 	{
-		j = 0;
-		if (i)
+		j = -1;
+		while (info->map[i][++j])
 		{
-			if (row_check != ft_strlen(map[i]))
+			if (info->map[i][j] == 'C')
+				info->c++;
+		}
+	}
+	if (!info->c)
+		return (print_error());
+}
+
+void	check_map_e(t_info *info)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	info->e = 0;
+	while (info->map[++i])
+	{
+		j = -1;
+		while (info->map[i][++j])
+		{
+			if (info->map[i][j] == 'E')
+				info->e++;
+			if (info->map[i][j] != '0' && info->map[i][j] != '1' && \
+			info->map[i][j] != 'P' && info->map[i][j] != 'C' && \
+			info->map[i][j] != 'E')
 				print_error();
 		}
-		row_check = ft_strlen(map[i]);
-		if (map[i][0] != '1' || map[i][row_check - 1] != '1')
-			print_error();
-		i++;
 	}
-	i--;
-	while (map[i][j] == '1' && map[0][j] == '1')
-		j++;
-	if (j != (row_check - 1))
-		print_error();
+	if (info->e != 1)
+		return (print_error());
 }
