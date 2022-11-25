@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:43:59 by segan             #+#    #+#             */
-/*   Updated: 2022/11/22 20:08:06 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/25 23:01:23 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ typedef struct s_info
 	char	**map;
 }				t_info;
 
-void	check_map(void);
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}				t_mlx;
+
+t_info	*check_map(void);
 char	*get_next_line(int fd);
 char	**get_map(void);
 void	free_arr_1d(char *str);
@@ -43,5 +49,6 @@ void	validation_of_map_shape(t_info *info);
 int		validation_of_map_path(t_info *info);
 int		check_path(t_info *info, int i, int j);
 void	print_error(void);
+t_mlx	*init_mlx(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:46:12 by segan             #+#    #+#             */
-/*   Updated: 2022/11/22 17:51:46 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/25 22:27:30 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "so_long.h"
 
-void	check_map(void)
+t_info	*check_map(void)
 {
 	t_info	*info;
 
@@ -27,7 +27,8 @@ void	check_map(void)
 	check_map_e(info);
 	validation_of_map_shape(info);
 	if (validation_of_map_path(info) == 0)
-		return (print_error());
+		print_error();
+	return (info);
 }
 
 char	**get_map(void)
