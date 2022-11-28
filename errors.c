@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 17:38:54 by segan             #+#    #+#             */
-/*   Updated: 2022/11/29 03:55:51 by segan            ###   ########.fr       */
+/*   Created: 2022/11/18 20:47:02 by segan             #+#    #+#             */
+/*   Updated: 2022/11/29 04:49:29 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include "so_long.h"
+#include <unistd.h>
+#include <stdlib.h>
 
-int	main(void)
+void	print_error(void)
 {
-	t_mlx	*mlx;
-	t_map	*map;
-	t_game	g;
+	write(1, "Error\n", 6);
+	write(1, "invalid map\n", 12);
+	exit(0);
+}
 
-	map = check_map();
-	mlx = init_mlx(map);
-	g.map = map;
-	g.mlx = mlx;
-	mlx_key_hook(mlx->win, press_key, &g);
-	mlx_hook(mlx->win, 17, 0, click_mouse, (void *)&g);
-	mlx_loop(mlx->mlx);
+void	print_mlx_error(void)
+{
+	write(1, "Error\n", 6);
+	write(1, "mlx problem\n", 12);
+	exit(0);
 }

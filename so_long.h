@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:43:59 by segan             #+#    #+#             */
-/*   Updated: 2022/11/28 02:52:46 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/29 04:47:43 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_map
 	char	**map;
 	int		width;
 	int		height;
+	int		mov_cnt;
 }				t_map;
 
 typedef struct s_img
@@ -48,10 +49,16 @@ typedef struct s_mlx
 	t_img	*img;
 }				t_mlx;
 
+typedef struct s_game
+{
+	t_mlx	*mlx;
+	t_map	*map;
+}				t_game;
+
 t_map	*check_map(void);
 char	*get_next_line(int fd);
 char	**get_map(void);
-void	free_arr_1d(char *str);
+void	free_arr_1d(char *str, char *str2);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *s);
@@ -73,5 +80,13 @@ void	draw_p(t_mlx *mlx, int x, int y);
 void	draw_c(t_mlx *mlx, int x, int y);
 void	draw_e(t_mlx *mlx, int x, int y);
 void	draw_w(t_mlx *mlx, int x, int y);
+int		press_key(int key_code, t_game *g);
+void	mov(t_game *g, int x, int y);
+int		ft_printf(const char *format, ...);
+int		is_valid(t_map	*map, int i, int j);
+void	exit_so_long(t_game *g);
+int		click_mouse(t_game *g);
+void	print_mlx_error(void);
+char	**free_all(char **s);
 
 #endif

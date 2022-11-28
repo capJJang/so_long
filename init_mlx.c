@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 22:27:55 by segan             #+#    #+#             */
-/*   Updated: 2022/11/28 03:58:33 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/29 03:45:47 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@ t_mlx	*init_mlx(t_map *map)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	if (!mlx)
+		print_mlx_error();
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
-		exit(0);
+		print_mlx_error();
 	init_img(mlx);
 	mlx->width = map->width * mlx->img->width;
 	mlx->height = map->height * mlx->img->height;
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
 	if (!mlx->win)
-		exit(0);
+		print_mlx_error();
 	draw_entire_map(mlx, map);
 	return (mlx);
 }
@@ -34,6 +36,8 @@ t_mlx	*init_mlx(t_map *map)
 void	init_img(t_mlx *mlx)
 {
 	mlx->img = (t_img *)malloc(sizeof(t_img));
+	if (!mlx)
+		print_mlx_error();
 	mlx->img->p = mlx_xpm_file_to_image(mlx->mlx, "./assets/ship.xpm", \
 	&mlx->img->width, &mlx->img->height);
 	mlx->img->e = mlx_xpm_file_to_image(mlx->mlx, "./assets/exit.xpm", \

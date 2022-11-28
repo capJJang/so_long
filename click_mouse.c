@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   click_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 17:38:54 by segan             #+#    #+#             */
-/*   Updated: 2022/11/29 03:55:51 by segan            ###   ########.fr       */
+/*   Created: 2022/11/29 03:21:38 by segan             #+#    #+#             */
+/*   Updated: 2022/11/29 04:49:15 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "so_long.h"
 
-int	main(void)
+int	click_mouse(t_game *g)
 {
-	t_mlx	*mlx;
-	t_map	*map;
-	t_game	g;
-
-	map = check_map();
-	mlx = init_mlx(map);
-	g.map = map;
-	g.mlx = mlx;
-	mlx_key_hook(mlx->win, press_key, &g);
-	mlx_hook(mlx->win, 17, 0, click_mouse, (void *)&g);
-	mlx_loop(mlx->mlx);
+	exit_so_long(g);
+	return (1);
 }
