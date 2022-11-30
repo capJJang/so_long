@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 20:25:54 by segan             #+#    #+#             */
-/*   Updated: 2022/11/29 04:26:47 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/29 23:59:55 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	validation_of_map_shape(t_map *map)
 	map->width = j;
 }
 
-int	validation_of_map_path(t_map *map)
+int	validation_of_map_path(t_map *map, char *argv)
 {
 	t_map	temp_map;
 	int		ret;
 
 	temp_map = *map;
-	temp_map.map = get_map();
+	temp_map.map = get_map(argv);
 	ret = check_path(&temp_map, map->i, map->j);
 	free_all(temp_map.map);
 	return (ret);

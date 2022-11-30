@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:43:59 by segan             #+#    #+#             */
-/*   Updated: 2022/11/29 04:47:43 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/30 22:21:13 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct s_game
 	t_map	*map;
 }				t_game;
 
-t_map	*check_map(void);
+t_map	*check_map(char *argv);
 char	*get_next_line(int fd);
-char	**get_map(void);
+char	**get_map(char *argv);
 void	free_arr_1d(char *str, char *str2);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
@@ -69,7 +69,7 @@ void	check_map_p(t_map *map);
 void	check_map_c(t_map *map);
 void	check_map_e(t_map *map);
 void	validation_of_map_shape(t_map *map);
-int		validation_of_map_path(t_map *map);
+int		validation_of_map_path(t_map *map, char *argv);
 int		check_path(t_map *map, int i, int j);
 void	print_error(void);
 t_mlx	*init_mlx(t_map *map);
@@ -88,5 +88,7 @@ void	exit_so_long(t_game *g);
 int		click_mouse(t_game *g);
 void	print_mlx_error(void);
 char	**free_all(char **s);
+void	print_arg_error(void);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 #endif

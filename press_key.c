@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 05:08:33 by segan             #+#    #+#             */
-/*   Updated: 2022/11/29 02:20:57 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/29 23:52:27 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int	press_key(int key_code, t_game *g)
 void	mov(t_game *g, int x, int y)
 {
 	if (g->map->map[y][x] == 'C')
+	{
 		g->map->c--;
+		g->map->map[y][x] = '0';
+	}
 	if (!g->map->c && g->map->map[y][x] == 'E')
 		exit_so_long(g);
 	g->map->mov_cnt++;

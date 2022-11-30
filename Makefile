@@ -6,7 +6,7 @@
 #    By: segan <segan@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 17:45:15 by segan             #+#    #+#              #
-#    Updated: 2022/11/29 04:54:28 by segan            ###   ########.fr        #
+#    Updated: 2022/11/29 23:51:10 by segan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,17 @@ SRCS = main.c check_map.c get_next_line.c get_next_line_utils.c errors.c\
 all : $(NAME)
 
 $(NAME) :
-	@echo make -C ./libft
-	@echo make -C ./ft_printf
+	make -C ./libft
+	make -C ./ft_printf
 	$(CC) $(CFLAGS) $(NAME) $(SRCS)
 
 clean :
-	@echo make clean -C ./libft
-	@echo make clean -C ./ft_printf
+	make clean -C ./libft
+	make clean -C ./ft_printf
 
 fclean :
-	@echo make fclean -C ./libft
-	@echo make fclean -C ./ft_printf
+	make fclean -C ./libft
+	make fclean -C ./ft_printf
 	rm -rf $(NAME)
 
 re :

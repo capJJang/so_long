@@ -6,7 +6,7 @@
 /*   By: segan <segan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 17:46:12 by segan             #+#    #+#             */
-/*   Updated: 2022/11/29 04:48:00 by segan            ###   ########.fr       */
+/*   Updated: 2022/11/29 23:59:26 by segan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 #include <unistd.h>
 #include "so_long.h"
 
-t_map	*check_map(void)
+t_map	*check_map(char *argv)
 {
 	t_map	*map;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		print_error();
-	map->map = get_map();
+	map->map = get_map(argv);
 	if (!map->map)
 		print_error();
 	check_map_p(map);
 	check_map_c(map);
 	check_map_e(map);
 	validation_of_map_shape(map);
-	if (validation_of_map_path(map) == 0)
+	if (validation_of_map_path(map, argv) == 0)
 		print_error();
 	map->mov_cnt = 0;
 	return (map);
 }
 
-char	**get_map(void)
+char	**get_map(char *argv)
 {
 	char	*ret;
 	char	**ret2;
@@ -43,7 +43,7 @@ char	**get_map(void)
 	int		fd;
 
 	ret = NULL;
-	fd = open("./map.ber", O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		print_error();
 	while (1)
